@@ -7,6 +7,8 @@ kontagro\MainKontAgro.class
 kontagro\vista\utils\components\CampoTextoRedondeado.class
 kontagro\vista\utils\components\BotonRedondeado.class
 kontagro\vista\login\FrmLogin$2.class
+kontagro\vista\menu\FrmMenu$1.class
+kontagro\vista\menu\FrmMenu.class
 kontagro\vista\utils\components\FondoPanel.class
 kontagro\vista\utils\components\CampoContrasenaRedondeado.class
 kontagro\vista\login\FrmLogin$3.class
