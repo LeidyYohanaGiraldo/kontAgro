@@ -1,9 +1,12 @@
 
 package kontagro.controlador.clases;
 
+import javax.swing.JOptionPane;
+import kontagro.controlador.gestorDeVistas.GestorDeVistas;
 import kontagro.modelo.dao.clases.UsuarioDao;
 import kontagro.modelo.entidad.Usuario;
 import kontagro.vista.login.FrmLogin;
+import kontagro.vista.menu.FrmMenu;
 
 /**
  *
@@ -17,6 +20,8 @@ public class LoginControlador {
     public LoginControlador(UsuarioDao usuarioDAO, FrmLogin vistaLogin) {
         this.usuarioDAO = usuarioDAO;
         this.vistaLogin = vistaLogin;
+        
+         this.vistaLogin.getBtnIniciarSesion().addActionListener(e -> validarLogin());
     }
    
        public void validarLogin() {
@@ -25,25 +30,24 @@ public class LoginControlador {
            
         Usuario usuario = usuarioDAO.obtenerUsuario(user, password);
 
-        if (usuario == null || usuario.getEstado().equals("bloqueado")) {
-            System.out.println("Usuario bloqueado o no existe.");
-          
-        }
+           if (usuario != null) {
+                vistaLogin.limpiarcampos();
 
-//        if (BCrypt.checkpw(password, user.getContrasena())) {
-//            usuarioDAO.resetearIntentos(usuario); // Reiniciamos los intentos fallidos en caso de éxito
-//            return true;
-//        } else {
-//            int intentosFallidos = user.getIntentosFallidos() + 1;
-//            usuarioDAO.actualizarIntentosFallidos(usuario, intentosFallidos);
-//
-//            if (intentosFallidos >= 3) {
-//                usuarioDAO.bloquearUsuario(usuario);  // Bloqueamos al usuario después de 3 intentos fallidos
-//                System.out.println("Usuario bloqueado por 3 intentos fallidos.");
-//            }
-//
-//            return false;
-//        }
+                        JOptionPane.showMessageDialog(vistaLogin, "Ingreso exitoso");
+//                        SesionUsuario.getInstancia().setUsuario(usuario);
+                        FrmMenu mantenimientoVista = new FrmMenu();
+//                        MenuController maneteminetoController = new MenuController(mantenimientoVista, vistaLogin); // Instancia del controlador
+                        GestorDeVistas.mostrarVista(vistaLogin, mantenimientoVista);
+                        
+
+
+            } else {
+                JOptionPane.showMessageDialog(vistaLogin, "Usuario o contraseña incorrectos");
+                vistaLogin.limpiarcampos();
+            }
+
+            
+        }
     }
     
-}
+    
