@@ -29,8 +29,8 @@ public class UsuarioDao implements IUsuarioDao {
     @Override
     public Usuario obtenerUsuario(String usuario, String contrasena) {
         Usuario user= null;
-        String query = "SELECT id_usuario, usuario, contrasena, intentos_fallidos, estado"
-                + "FROM usuarios "
+        String query = "SELECT id_usuario, usuario, contrasena, nombres, apellidos "
+                + "FROM usuario "
                 + "WHERE usuario = ? AND contrasena = ?";
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
@@ -43,8 +43,9 @@ public class UsuarioDao implements IUsuarioDao {
                 user.setIdUsuario(rs.getInt("id_usuario"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setContrasena(rs.getString("contrasena"));
-                user.setIntentosFallidos(rs.getInt("intentos_fallidos"));
-                user.setEstado(rs.getString("estado"));
+                user.setNombres(rs.getString("nombres"));
+                user.setApellidos(rs.getString("apellidos"));
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,42 +53,42 @@ public class UsuarioDao implements IUsuarioDao {
         return user;
     }
 
-    @Override
-    public void actualizarIntentosFallidos(String usuario, int intentosFallidos) {
-        String query = "UPDATE usuarios SET intentos_fallidos = ?"
-                + " WHERE usuario = ?";
+//    @Override
+//    public void actualizarIntentosFallidos(String usuario, int intentosFallidos) {
+//        String query = "UPDATE usuarios SET intentos_fallidos = ?"
+//                + " WHERE usuario = ?";
+//
+//        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+//            stmt.setInt(1, intentosFallidos);
+//            stmt.setString(2, usuario);
+//            stmt.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-            stmt.setInt(1, intentosFallidos);
-            stmt.setString(2, usuario);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void bloquearUsuario(String usuario) {
+//        String query = "UPDATE usuarios SET estado = 'bloqueado', fecha_bloqueo = CURRENT_TIMESTAMP WHERE usuario = ?";
+//
+//        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+//            stmt.setString(1, usuario);
+//            stmt.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    @Override
-    public void bloquearUsuario(String usuario) {
-        String query = "UPDATE usuarios SET estado = 'bloqueado', fecha_bloqueo = CURRENT_TIMESTAMP WHERE usuario = ?";
-
-        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-            stmt.setString(1, usuario);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void resetearIntentos(String usuario) {
-        String query = "UPDATE usuarios SET intentos_fallidos = 0 WHERE usuario = ?";
-
-        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-            stmt.setString(1, usuario);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void resetearIntentos(String usuario) {
+//        String query = "UPDATE usuarios SET intentos_fallidos = 0 WHERE usuario = ?";
+//
+//        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+//            stmt.setString(1, usuario);
+//            stmt.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

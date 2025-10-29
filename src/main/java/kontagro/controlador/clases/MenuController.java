@@ -4,23 +4,30 @@ package kontagro.controlador.clases;
 
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import kontagro.controlador.gestorDeVistas.GestorDeVistas;
+import kontagro.vista.login.FrmLogin;
+import kontagro.vista.menu.FrmMenu;
 
 
 public class MenuController  {
 
-//    private final JFmMenu vista;
-//    private JFrmLogin vistaLogin;
+    private final FrmMenu vista;
+    private FrmLogin vistaLogin;
 
-//    public MenuController(JFmMenu vista, JFrmLogin vistaLogin) {
-//        this.vista = vista;
-//        this.vistaLogin = vistaLogin; 
-//        this.vista.getBtnAceptar().addActionListener(e -> realizarAccion());
-//        this.vista.getBtnSalir().addActionListener(e -> volverALogin());
-//
-//    }
+    public MenuController(FrmMenu vista, FrmLogin vistaLogin) {
+        this.vista = vista;
+        this.vistaLogin = vistaLogin; 
+        vista.mostrarBotonDinamico(vista.getBtnInicio(), false);
+        this.vista.getBtnIngresos().addActionListener(e -> ingresos());
+        this.vista.getBtnEgresos().addActionListener(e -> egresos());
+        this.vista.getBtnActividades().addActionListener(e -> actividades());
+        this.vista.getBtnCerrarSesion().addActionListener(e -> volverALogin());
+
+    }
 
  
-    public void realizarAccion() {
+    public void ingresos() {
+        vista.mostrarBotonDinamico(vista.getBtnInicio(), true);
 //        try {
 //
 //            int opcion = Integer.parseInt(vista.getOpcion());
@@ -64,17 +71,25 @@ public class MenuController  {
 //        }
 
     }
+    
+        public void egresos() {
+            vista.mostrarBotonDinamico(vista.getBtnInicio(), true);
+        }
+        
+        public void actividades() {
+            vista.mostrarBotonDinamico(vista.getBtnInicio(), true);
+        }
 
 
 
     public void volverALogin() {
-//        try {         
-//
-//        GestorDeVistas.mostrarVista(vista, vistaLogin);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            JOptionPane.showMessageDialog(vista, "Ocurrio un error al intentar salir de la vista ."
-//                    + e.getMessage(), "Error vista", JOptionPane.ERROR_MESSAGE);
-//        }
+        try {         
+
+        GestorDeVistas.mostrarVista(vista, vistaLogin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(vista, "Ocurrio un error al intentar salir de la vista ."
+                    + e.getMessage(), "Error vista", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

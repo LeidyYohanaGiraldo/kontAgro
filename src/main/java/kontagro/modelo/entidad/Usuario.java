@@ -4,8 +4,8 @@ public class Usuario {
     private int idUsuario;
     private String usuario;
     private String contrasena;
-    private int intentosFallidos;
-    private String estado;
+    private String nombres;
+    private String apellidos;
 
 
     public int getIdUsuario() {
@@ -32,19 +32,21 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public int getIntentosFallidos() {
-        return intentosFallidos;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setIntentosFallidos(int intentosFallidos) {
-        this.intentosFallidos = intentosFallidos;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
+
+ 
 }

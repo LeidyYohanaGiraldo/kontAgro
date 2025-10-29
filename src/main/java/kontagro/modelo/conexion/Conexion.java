@@ -12,7 +12,7 @@ public class Conexion {
     // Variables finales para mejor seguridad
 
     private final String usuario = "postgres";
-    private final String contrasenia = "1234";
+    private final String contrasenia = "A";
     private final String bd = "kont_agro";
     private final String ip = "localhost";
     private final String puerto = "5432";

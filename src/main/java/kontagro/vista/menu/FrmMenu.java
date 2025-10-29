@@ -6,6 +6,7 @@
 package kontagro.vista.menu;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import kontagro.vista.utils.components.FechaHoraUtil;
 
@@ -34,6 +35,17 @@ public class FrmMenu extends javax.swing.JFrame {
         cl.show(pnlContenedor, "Inicio");
 
         tiempoActual.iniciarReloj(lblFechaHora);
+        
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        
+        // Evitar que pack() reduzca la ventana
+        this.setMinimumSize(screenSize);
+
+        // Revalidar y repintar todo para ajustar correctamente
+        this.revalidate();
+        this.repaint();
 
     }
 
@@ -361,8 +373,6 @@ public class FrmMenu extends javax.swing.JFrame {
                 .addGap(0, 33, Short.MAX_VALUE)
                 .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -374,6 +384,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private void btnIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresosActionPerformed
         // TODO add your handling code here:
         ((java.awt.CardLayout) pnlContenedor.getLayout()).show(pnlContenedor, "Ingresos");
+        mostrarBotonDinamico(getBtnEgresos(), false);
     }//GEN-LAST:event_btnIngresosActionPerformed
 
     private void btnEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEgresosActionPerformed
@@ -384,6 +395,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private void btnActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActividadesActionPerformed
         // TODO add your handling code here:
         ((java.awt.CardLayout) pnlContenedor.getLayout()).show(pnlContenedor, "Actividades");
+         mostrarBotonDinamico(getBtnEgresos(), true);
     }//GEN-LAST:event_btnActividadesActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -454,4 +466,29 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JPanel pnlLateral;
     private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnCerrarSesion() {
+            return btnCerrarSesion;
+        }
+
+    public JButton getBtnInicio() {
+            return btnInicio;
+        }
+    
+    public JButton getBtnIngresos() {
+            return btnIngresos;
+        }
+    
+    public JButton getBtnEgresos() {
+            return btnEgresos;
+        }
+    
+    public JButton getBtnActividades() {
+            return btnActividades;
+        }
+    
+    public void mostrarBotonDinamico(JButton boton, boolean mostrar) {
+        boton.setVisible(mostrar);
+    }
+
 }

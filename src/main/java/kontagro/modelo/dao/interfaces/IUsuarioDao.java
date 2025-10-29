@@ -9,9 +9,9 @@ import kontagro.modelo.entidad.Usuario;
  */
 public interface IUsuarioDao {
     Usuario obtenerUsuario(String usuario, String contrasena);
-    void actualizarIntentosFallidos(String usuario, int intentosFallidos);
-    void bloquearUsuario(String usuario);
-    void resetearIntentos(String usuario);
+//    void actualizarIntentosFallidos(String usuario, int intentosFallidos);
+//    void bloquearUsuario(String usuario);
+//    void resetearIntentos(String usuario);
     
     
 }

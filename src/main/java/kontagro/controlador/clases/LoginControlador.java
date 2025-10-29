@@ -20,6 +20,7 @@ public class LoginControlador {
     public LoginControlador(UsuarioDao usuarioDAO, FrmLogin vistaLogin) {
         this.usuarioDAO = usuarioDAO;
         this.vistaLogin = vistaLogin;
+        vistaLogin.limpiarcampos();
         
          this.vistaLogin.getBtnIniciarSesion().addActionListener(e -> validarLogin());
     }
@@ -36,7 +37,7 @@ public class LoginControlador {
                         JOptionPane.showMessageDialog(vistaLogin, "Ingreso exitoso");
 //                        SesionUsuario.getInstancia().setUsuario(usuario);
                         FrmMenu mantenimientoVista = new FrmMenu();
-//                        MenuController maneteminetoController = new MenuController(mantenimientoVista, vistaLogin); // Instancia del controlador
+                        MenuController maneteminetoController = new MenuController(mantenimientoVista, vistaLogin); // Instancia del controlador
                         GestorDeVistas.mostrarVista(vistaLogin, mantenimientoVista);
                         
 

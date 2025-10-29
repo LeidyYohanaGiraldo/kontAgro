@@ -45,7 +45,11 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setResizable(true);
         this.setLocationRelativeTo(null);
         setTitle("KontAgro - Inicio de Sesión");
-        setSize(800, 500);
+//        setSize(800, 500);
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
     }
 
@@ -86,7 +90,6 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 51, 0));
         jLabel3.setText("Contraseña");
 
-        txtUsuario.setEditable(false);
         txtUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtUsuario.setForeground(new java.awt.Color(204, 255, 204));
         txtUsuario.setBorder(null);
@@ -99,6 +102,11 @@ public class FrmLogin extends javax.swing.JFrame {
         txtPassword.setBackground(new java.awt.Color(204, 204, 204));
         txtPassword.setText("jPasswordField1");
         txtPassword.setBorder(null);
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         BtnIniciarSesion.setBackground(new java.awt.Color(0, 51, 0));
         BtnIniciarSesion.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -171,6 +179,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
